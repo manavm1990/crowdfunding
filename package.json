@@ -6,7 +6,8 @@
   "main": "app/index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon -I --watch app"
+    "start": "nodemon -I --watch app",
+    "seed": "node --experimental-json-modules app/db/seeds/seed.js"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
@@ -14,5 +15,11 @@
     "eslint-config-xo": "^0.37.0",
     "nodemon": "^2.0.12",
     "prettier": "^2.3.2"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "mysql2": "^2.3.0",
+    "sequelize": "^6.6.5"
   }
 }
