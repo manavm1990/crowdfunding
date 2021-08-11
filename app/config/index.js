@@ -14,4 +14,5 @@ export default {
       port: 3306,
     },
   },
+  PORT: process.env.PORT || 3001,
 };
