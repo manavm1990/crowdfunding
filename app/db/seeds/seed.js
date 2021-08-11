@@ -3,8 +3,6 @@ import models from "../../models/index.js";
 import * as userData from "./userData.json";
 import * as projectData from "./projectData.json";
 
-console.log(models);
-
 (async () => {
   await sequelize.sync({ force: true });
 
