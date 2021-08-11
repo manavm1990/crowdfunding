@@ -29,7 +29,7 @@ Project.init(
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    userId: {
+    fkProjectUserId: {
       type: DataTypes.INTEGER,
       references: {
         model: "user",
