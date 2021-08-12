@@ -16,10 +16,6 @@ router.post("/", async ({ body }, res) => {
 router.post("/login", async ({ body: { email, password } }, res) => {
   try {
     const user = await UserController.login(email, password);
-    if (!user) {
-      res.status(401).json({ message: "Invalid credentials" });
-    }
-
     res.status(200).json(user);
   } catch (e) {
     res.status(500).json({ message: e.message });
