@@ -5,9 +5,9 @@ import usersRouter from "./routes/users.js";
 
 const app = express();
 
-// app.use(session);
 app.use(express.json());
 
+// http://localhost:3001/users
 app.use("/users", usersRouter);
 
 // TODO: 🔥 Remove this when we use a session

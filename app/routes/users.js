@@ -13,6 +13,7 @@ router.post("/", async ({ body }, res) => {
   }
 });
 
+// http://localhost:3001/users/login
 router.post("/login", async ({ body: { email, password } }, res) => {
   try {
     const user = await UserController.login(email, password);

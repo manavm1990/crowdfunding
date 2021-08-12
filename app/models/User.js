@@ -10,7 +10,7 @@ class User extends Model {
   }
 }
 
-// This creates a new instance of a user
+// This creates a new instance of a User
 // It's as if we did `new User` ourselves
 User.init(
   {
