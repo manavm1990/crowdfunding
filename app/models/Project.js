@@ -40,7 +40,11 @@ Project.init(
   {
     sequelize,
     timestamps: false,
+
+    // Prevent table name from being pluralized
     freezeTableName: true,
+
+    // Automatically convert camelcase column names to snakecase
     underscored: true,
     modelName: "project",
   }
