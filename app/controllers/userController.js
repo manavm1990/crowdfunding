@@ -7,7 +7,7 @@ class UserController {
     const validated = await existingUser?.checkPassword(password);
 
     if (validated) {
-      const { password, ...user } = existingUser.dataValues;
+      const { id, password, ...user } = existingUser.dataValues;
       return user;
     }
 
