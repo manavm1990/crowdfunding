@@ -5,14 +5,10 @@ dotenv.config();
 
 export default {
   db: {
-    DB_NAME: process.env.DB_NAME,
-    DB_USER: process.env.DB_USER,
-    DB_PASSWORD: process.env.DB_PASSWORD,
-    CONN_PARAMS: {
-      host: "localhost",
-      dialect: "mysql",
-      port: 3306,
-    },
+    name: process.env.DB_NAME,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
   },
-  PORT: process.env.PORT || 3001,
+  port: process.env.PORT || 3001,
+  secret: process.env.SECRET || "secret",
 };

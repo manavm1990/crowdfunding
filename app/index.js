@@ -1,30 +1,17 @@
-// const express = require("express");
-// const session = require("express-session");
-// const routes = require("./controllers");
+import express from "express";
+import config from "./config/index.js";
+import sequelize from "./loaders/sequelize.js";
+import usersRouter from "./routes/users.js";
 
-// const sequelize = require("./config");
-// const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const app = express();
 
-// const app = express();
-// const PORT = process.env.PORT || 3001;
+// app.use(session);
+app.use(express.json());
 
-// const sess = {
-//   secret: "Super secret secret",
-//   cookie: {},
-//   resave: false,
-//   saveUninitialized: true,
-//   store: new SequelizeStore({
-//     db: sequelize,
-//   }),
-// };
+app.use("/users", usersRouter);
 
-// app.use(session(sess));
+// TODO: 🔥 Remove this when we use a session
+//  It will already be taken care of when session is initialized
+sequelize.sync({ force: true });
 
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-
-// app.use(routes);
-
-// sequelize.sync({ force: false }).then(() => {
-//   app.listen(PORT, () => console.log("Now listening"));
-// });
+app.listen(config.port, () => console.info("Now listening"));

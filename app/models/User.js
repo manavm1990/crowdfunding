@@ -1,12 +1,12 @@
-import pkg from "sequelize";
 import bcrypt from "bcrypt";
+import pkg from "sequelize";
 import sequelize from "../loaders/sequelize.js";
 
 const { DataTypes, Model } = pkg;
 
 class User extends Model {
-  checkPassword(loginPw) {
-    return bcrypt.compareSync(loginPw, this.password);
+  checkPassword(pass) {
+    return bcrypt.compare(pass, this.password);
   }
 }
 
@@ -19,6 +19,7 @@ User.init(
       autoIncrement: true,
     },
     name: {
+      // defaults to length of 255
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -31,18 +32,22 @@ User.init(
       },
     },
     password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [8],
-      },
+      type: DataTypes.STRING(64),
+
+      is:
+        // matches this RegExp
+        /^[0-9a-f]{64}$/i,
+    },
+    isVerified: {
+      type: DataTypes.BOOLEAN,
     },
   },
   {
     hooks: {
-      beforeCreate: async (newUserData) => {
-        newUserData.password = await bcrypt.hash(newUserData.password, 10);
-        return newUserData;
+      beforeCreate: async (newUser) => {
+        newUser.password = await bcrypt.hash(newUser.password, 10);
+        newUser.isVerified = false;
+        return newUser;
       },
       beforeUpdate: async (updatedUserData) => {
         updatedUserData.password = await bcrypt.hash(
@@ -54,7 +59,6 @@ User.init(
     },
     sequelize,
     timestamps: false,
-    freezeTableName: true,
     underscored: true,
     modelName: "user",
   }
