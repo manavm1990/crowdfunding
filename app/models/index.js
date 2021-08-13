@@ -3,6 +3,8 @@ import Project from "./Project.js";
 
 User.hasMany(Project, {
   foreignKey: "fk_project_user_id",
+
+  // Child gets deleted when parent is deleted
   onDelete: "CASCADE",
 });
 

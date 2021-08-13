@@ -11,7 +11,6 @@ app.use(express.json());
 app.use("/users", usersRouter);
 
 // TODO: 🔥 Remove this when we use a session
-//  It will already be taken care of when session is initialized
 sequelize.sync({ force: true });
 
 app.listen(config.port, () => console.info("Now listening"));

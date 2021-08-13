@@ -1,10 +1,13 @@
 import bcrypt from "bcrypt";
 import pkg from "sequelize";
+
+// An instance of Sequelize that has been loaded
 import sequelize from "../loaders/sequelize.js";
 
 const { DataTypes, Model } = pkg;
 
 class User extends Model {
+  // Instance method
   checkPassword(pass) {
     return bcrypt.compare(pass, this.password);
   }
