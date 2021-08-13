@@ -1,12 +1,12 @@
 import { Router } from "express";
-import models from "../models/index.js";
 import UserController from "../controllers/UserController.js";
 
 const router = new Router();
 
 router.post("/", async ({ body }, res) => {
   try {
-    const user = await models.User.create(body);
+    // User.create is similar to doing new User
+    const user = await UserController.create(body);
     res.status(201).json(user);
   } catch {
     res.status(500).json({ message: "Unable to create user" });
