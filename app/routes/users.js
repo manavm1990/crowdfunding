@@ -3,6 +3,19 @@ import UserController from "../controllers/UserController.js";
 
 const router = new Router();
 
+router.get(
+  "/verify/:verification",
+  async ({ params: { verification } }, res) => {
+    if (UserController.verify(verification)) {
+      res.status(200).json({ message: "✅" });
+    } else {
+      res
+        .status(400)
+        .json({ message: "Invalid ✉️ verification. Contact support 👱🏾‍♂️" });
+    }
+  }
+);
+
 router.post("/", async ({ body }, res) => {
   try {
     // User.create is similar to doing new User
