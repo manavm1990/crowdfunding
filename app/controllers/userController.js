@@ -1,4 +1,5 @@
 import models from "../models/index.js";
+import ms from "../services/mailerService.js";
 
 class UserController {
   static _stripUser(user) {
@@ -9,6 +10,7 @@ class UserController {
   static async create(newUser) {
     const user = await models.User.create(newUser);
     if (user) {
+      ms.sendVerificationEmail(user.email);
       return UserController._stripUser(user);
     }
 
