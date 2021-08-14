@@ -36,7 +36,7 @@ User.init(
     },
     password: {
       type: DataTypes.STRING(64),
-
+      allowNull: false,
       is:
         // matches this RegExp
         /^[0-9a-f]{64}$/i,
