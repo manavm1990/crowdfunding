@@ -17,3 +17,6 @@ EMAIL
 ```
 
 You will need to `SOURCE app/db/schema.sql` to create `user_db`.
+
+Database will reset itself after every update because of `{sync: true}` in
+`app/index.js` (the entry-point file).
