@@ -1,6 +1,5 @@
 import bcrypt from "bcrypt";
 import pkg from "sequelize";
-
 // An instance of Sequelize that has been loaded
 import sequelize from "../loaders/sequelize.js";
 
@@ -13,8 +12,7 @@ class User extends Model {
   }
 }
 
-// This creates a new instance of a User
-// It's as if we did `new User` ourselves
+// Class method - applies to class, not instance (no `this`)
 User.init(
   {
     id: {
