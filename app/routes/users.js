@@ -6,12 +6,20 @@ const router = new Router();
 router.get(
   "/verify/:verification",
   async ({ params: { verification } }, res) => {
-    if (UserController.verify(verification)) {
-      res.status(200).json({ message: "✅" });
-    } else {
-      res
-        .status(400)
-        .json({ message: "Invalid ✉️ verification. Contact support 👱🏾‍♂️" });
+    try {
+      if (UserController.verify(verification)) {
+        res.status(200).json({ message: "✅" });
+      } else {
+        res
+          .status(400)
+          .json({ message: "Invalid ✉️ verification. Contact support 👱🏾‍♂️" });
+      }
+    } catch (err) {
+      if (err) {
+        res.status(400).json({ message: err.message });
+      }
+
+      res.status(500).json({ message: "Internal server error" });
     }
   }
 );

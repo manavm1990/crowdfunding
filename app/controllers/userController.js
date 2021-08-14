@@ -42,22 +42,34 @@ class UserController {
   }
 
   static async verify(verification) {
+    // Find the user's ✉️ via the hashed url
     const { email } = await models.Verification.findOne({
       where: {
         verification,
       },
     });
+
     if (email) {
       const user = await models.User.findOne({ where: { email } });
       if (user) {
         await user.update({
           isVerified: true,
         });
-        return UserController._stripUser(user);
+
+        // TODO: Actually verify that this was destroyed and act accordingly
+        models.Verification.destroy({
+          where: {
+            email,
+          },
+        });
+
+        return true;
       }
+
+      throw new Error("Invalid user!");
     }
 
-    throw new Error("❗ Access Denied");
+    return false;
   }
 }
 
