@@ -52,13 +52,6 @@ User.init(
         newUser.isVerified = false;
         return newUser;
       },
-      beforeUpdate: async (updatedUserData) => {
-        updatedUserData.password = await bcrypt.hash(
-          updatedUserData.password,
-          10
-        );
-        return updatedUserData;
-      },
     },
     sequelize,
     freezeTableName: true,
