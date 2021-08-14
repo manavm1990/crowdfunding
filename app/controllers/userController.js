@@ -10,7 +10,12 @@ class UserController {
   static async create(newUser) {
     const user = await models.User.create(newUser);
     if (user) {
-      ms.sendVerificationEmail(user.email);
+      const { email } = user;
+      const verification = await models.Verification.create({
+        email,
+      });
+      console.log(verification);
+      // ms.sendVerificationEmail(email);
       return UserController._stripUser(user);
     }
 

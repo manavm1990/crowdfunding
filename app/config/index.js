@@ -11,5 +11,4 @@ export default {
   },
   email: process.env.EMAIL,
   port: process.env.PORT || 3001,
-  secret: process.env.SECRET || "secret",
 };

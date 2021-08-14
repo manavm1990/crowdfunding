@@ -10,7 +10,6 @@ app.use(express.json());
 // http://localhost:3001/users
 app.use("/users", usersRouter);
 
-// TODO: 🔥 Remove this when we use a session
-sequelize.sync({ force: true });
-
-app.listen(config.port, () => console.info("Now listening"));
+sequelize
+  .sync({ force: true })
+  .then(app.listen(config.port, () => console.info("Now listening")));
