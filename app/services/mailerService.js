@@ -4,13 +4,16 @@ import config from "../config/index.js";
 let transporter = null;
 
 export default {
-  async sendVerificationEmail(to) {
+  async sendVerificationEmail(to, url) {
+    console.log(url);
     const sentEmailInfo = await transporter.sendMail({
       from: config.email, // sender address
       to,
       subject: "Hello ✔", // Subject line
-      text: "Hello world?", // plain text body
-      html: "<b>Hello world?</b>", // html body
+      text: "Verify ✉️", // plain text body
+
+      // TODO: Use handlebars for better ✉️
+      html: `<a href=${url} target="_blank">Verify</a>`, // html body
     });
     console.info(`Get ✉️ at: ${nodemailer.getTestMessageUrl(sentEmailInfo)}`);
   },
