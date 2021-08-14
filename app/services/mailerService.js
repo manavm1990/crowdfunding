@@ -5,7 +5,6 @@ let transporter = null;
 
 export default {
   async sendVerificationEmail(to, url) {
-    console.log(url);
     const sentEmailInfo = await transporter.sendMail({
       from: config.email, // sender address
       to,
