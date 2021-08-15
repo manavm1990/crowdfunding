@@ -1,5 +1,8 @@
 # User Authentication and Verification Demo
 
+- Provides a demo or starter code for an account creation and login system that includes 📧 verification. No services aside from `nodemailer` and Ethereal Email are used
+- **Does not** include `express-session` or `jwt`.
+
 - ESM
 - Linting, Prettier
 - MySQL, Sequelize
