@@ -17,6 +17,8 @@ class UserController {
       } = await models.Verification.create({
         email,
       });
+
+      // Encode the verification url to avoid extra '/'s
       const verificationLink = `http://localhost:${
         config.port
       }/users/verify/${encodeURIComponent(verification)}`;

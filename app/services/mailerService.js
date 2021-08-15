@@ -9,6 +9,9 @@ export default {
       from: config.email, // sender address
       to,
       subject: "Hello ✔", // Subject line
+
+      // TODO: Add a plain text message for user
+      // to paste a link into their browser
       text: "Verify ✉️", // plain text body
 
       // TODO: Use handlebars for better ✉️
@@ -18,6 +21,7 @@ export default {
   },
 };
 (async () => {
+  // Create a new account to use on Ethereal ✉️
   const { user, pass, smtp } = await nodemailer.createTestAccount();
 
   transporter = nodemailer.createTransport({
