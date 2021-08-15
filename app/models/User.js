@@ -15,12 +15,6 @@ class User extends Model {
 // Class method - applies to class, not instance (no `this`)
 User.init(
   {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
     name: {
       // defaults to length of 255
       type: DataTypes.STRING,
