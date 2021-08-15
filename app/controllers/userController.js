@@ -12,9 +12,7 @@ class UserController {
     const user = await models.User.create(newUser);
     if (user) {
       const { email } = user;
-      const {
-        dataValues: { verification },
-      } = await models.Verification.create({
+      const { verification } = await models.Verification.create({
         email,
       });
 
