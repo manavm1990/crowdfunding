@@ -29,8 +29,8 @@ router.post("/", async ({ body }, res) => {
     // User.create is similar to doing new User
     const user = await UserController.create(body);
     res.status(201).json(user);
-  } catch {
-    res.status(500).json({ message: "Unable to create user" });
+  } catch ({ message }) {
+    res.status(500).json({ message });
   }
 });
 
